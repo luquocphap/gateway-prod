@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Đăng nhập vào docker hub
-        run: docker login -u luquocphap ${{secrets.PASS_DOCKER}}
+        run: docker login -u luquocphap -p ${{secrets.PASS_DOCKER}}
 
       - name: Build image
         run: docker build -t luquocphap/img-gateway:latest .
