@@ -1,0 +1,23 @@
+name: cd
+
+on: 
+    workflow_run: 
+        workflows: ["ci"]
+        types:
+            - completed
+
+jobs:
+    start:
+        runs-on: node_54
+
+        steps:
+            - name: Dừng và xóa container trên server
+              run: sudo docker container stop con-gateway
+
+            - name: Xóa container trên server
+              run: sudo docker container remove con-gateway
+            
+            - name: Xóa image BE
+              working-directory: /home/luquocphap/nestjs
+              run: sudo docker image remove luquocphap/img-gateway:latest
+
