@@ -1,0 +1,24 @@
+name: ci
+
+on:
+
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Đăng nhập vào docker hub
+        run: docker login -u luquocphap ${{secrets.PASS_DOCKER}}
+
+      - name: Build image
+        run: docker build -t luquocphap/img-gateway:latest .
+
+      - name: Push image lên docker hub
+        run: docker push luquocphap/img-gateway:latest
+
+      
