@@ -11,14 +11,16 @@ jobs:
         runs-on: node_54
 
         steps:
-            - name: Kéo Image mới nhất từ Docker Hub
-              run: sudo docker pull luquocphap/img-gateway:latest
+            - name: Dừng và xóa container trên server
+              run: sudo docker container stop con-gateway
 
-            - name: Dừng và xóa container cũ bằng Compose
-              working-directory: /home/luquocphap/nestjs
-              run: sudo docker compose down
+            - name: Xóa container trên server
+              run: sudo docker container remove con-gateway
+            
+            - name: Xóa image BE
+              run: sudo docker image remove luquocphap/img-gateway:latest
 
-            - name: Chạy lại hệ thống với Image mới
+            - name: Chạy lại source
               working-directory: /home/luquocphap/nestjs
-              run: sudo docker compose up -d --pull always gateway
+              run: sudo docker compose up -d
 
