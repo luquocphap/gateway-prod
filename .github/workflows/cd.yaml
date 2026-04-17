@@ -18,6 +18,9 @@ jobs:
               run: sudo docker container remove con-gateway
             
             - name: Xóa image BE
-              working-directory: /home/luquocphap/nestjs
               run: sudo docker image remove luquocphap/img-gateway:latest
+
+            - name: Chạy lại source
+              working-directory: /home/ubuntu/nestjs
+              run: sudo docker compose up -d
 

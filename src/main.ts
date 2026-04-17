@@ -13,7 +13,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({}));
 
   const config = new DocumentBuilder()
-    .setTitle('cyber_community phap')
+    .setTitle('cyber_community luquocphap')
     .setDescription('The cyber_community API description')
     .setVersion('1.0')
     .addTag('cyber_community')
